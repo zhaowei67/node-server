@@ -6,6 +6,7 @@
 - "register" 使用ajax发送POST请求
 
 2. 代码分析
+```
 封装路由对象
      var getRoutes = {
     "/index": function (req, res) {
@@ -56,8 +57,9 @@ function parseBody(body) {
     })
     return obj
 }
-
+```
 路由处理函数
+```
     function routesHandle(req, res) {
     var pathname = url.parse(req.url).pathname
     if (pathname === "/") {
@@ -71,9 +73,10 @@ function parseBody(body) {
         staticRoot(req, res)
     }
 }
-
+```
 
 静态文件处理
+```
 function staticRoot(req, res) {
     fs.readFile(path.join(__dirname, "static", req.url),function (err, data) {
         if (err) {
@@ -84,13 +87,14 @@ function staticRoot(req, res) {
         }       
     })
 }
-
+```
 创建服务器监听3000端口
+```
     http.createServer(function (req, res) {
     routesHandle(req, res)
 }).listen(3000, function () {
     console.log('running')
     console.log(__dirname)
 })
-
+```
 
